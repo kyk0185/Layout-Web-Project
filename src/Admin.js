@@ -1,38 +1,47 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { data } from './dummy';
 import './Admin.css';
+import { data } from './dummy';
 
 class Admin extends Component {
     constructor(props) {
         console.log(props);
         super(props)
         this.state = {
-            filename: "",
-            filenameId: "",
-            sidoCode: ""
+            dummyData: data,
         }
         this.handleChange = this.fileUpload.bind(this);
     }
     //파일 등록
-    fileUpload = index => event => {
+    fileUpload = (index, titleIndex) => event => {
         event.preventDefault();
-        const {addItems} = this.props;
-
+        const { dummyData } = this.state;
+        
         let files = event.target.files;
-        let sidoCode = event.target.name;
         
-        this.setState({ filename: files[0].name, filenameId: index, sidoCode: sidoCode });
+        let copyData = Object.assign([], dummyData);
+        copyData[index].titles[titleIndex].fileName = files[0].name;
         
+        this.setState({
+            dummyData: copyData
+        })
+        
+        /*
+        Reducer 사용 시
+        const { addItems } = this.props;
+
         let data = {
             filename: files[0].name,
-            filenameId: index,
+            filenameId: key,
             sidoCode:sidoCode
         }
         console.log('ff',data)
+
         addItems(data);
+        */
     }
-    //파일 삭제
+
+    //파일 삭제(구현안됨)
     fileDelete = (key) => {
         this.setState({ filename: "" });
         let data = {
@@ -43,36 +52,33 @@ class Admin extends Component {
     }
 
     render() {
-        const {items} = this.props;
-        localStorage.setItem('items',JSON.stringify(items));
+        const { items } = this.props;
+        const { dummyData } = this.state;
+        //localStorage.setItem('items',JSON.stringify(items));
         return (
             <div className="frame1">
-
                 <div className="header1" >
                     <h2>관리자 페이지</h2>`
                 </div>
-
                 <div className="container">
                     {
-                        data.map((item, index) => (
+                        dummyData.map((item, index) => (
                             <div className="container2" key={item.key}>
                                 <div className="content">
                                     <h2>{item.sido}</h2>
                                 </div>
                                 {
-                                    item.title.map((items, index) => (
-                                        <div className="content" key={items.key}>
+                                    item.titles.map((title, titleIndex) => (
+                                        <div className="content" key={`title-${index}-${titleIndex}`}>
                                             <div className="contentLeft">
-                                                <h3>{items.name}</h3>
+                                                <h3>{title.name}</h3>
                                             </div>
-                                            {(this.state.filenameId === items.key && this.state.sidoCode === items.code) ? //시도를 추가하는 부분
-                                                <div className="contentMiddle">
-                                                    <h3>{this.state.filename}</h3>
-                                                </div> : null
-                                            }
+                                            <div className="contentMiddle">
+                                                <h3>{title.fileName}</h3>
+                                            </div>
                                             <div className="contentRight" >
-                                                <label htmlFor={items.key}>
-                                                    등록<input type="file" id={items.key} name={items.code} onChange={this.fileUpload(items.key)} />
+                                                <label htmlFor={`title-${index}-${titleIndex}`}>
+                                                    등록<input type="file" id={`title-${index}-${titleIndex}`} name={item.code} onChange={this.fileUpload(index, titleIndex)} />
                                                 </label>
                                                 <label htmlFor="ex_file_delete">삭제</label>
                                                 {/* <input key={items.key} type="button" id="ex_file_delete" onClick={this.fileDelete(items.key)} /> */}
@@ -101,7 +107,3 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Admin);
-
-
-
-
