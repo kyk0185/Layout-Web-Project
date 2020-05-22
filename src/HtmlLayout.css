@@ -1,0 +1,252 @@
+.frame{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    flex: 0.5;
+    overflow: auto hidden;
+    border-style: solid;
+    border-color: black;
+    margin-bottom: 5px;
+    padding-left: 15px;
+}
+.container{
+    display: flex;
+    flex:5;
+    overflow: auto;
+    border-style: solid;
+    border-color: red;
+    flex-direction: column;
+    padding: 10px;
+}
+ .content1{
+    display: flex;
+    flex: 1;
+    border-style:  solid;
+    border-width: 2px;
+    margin-bottom: 5px;
+    justify-content: space-around;
+    align-items: center;
+}
+.content2{
+    display: flex;
+    flex: 3;
+    border-style:  solid;
+    border-width: 2px;
+    justify-content: space-around;
+    align-items: center;
+}
+.content3{
+    display: flex;
+    flex:2;
+    border-style:  solid;
+    border-width: 2px;
+    margin-top: 5px;
+    justify-content: space-around;
+    align-items: center;
+}
+.content4{
+    display: flex;
+    flex:2;
+    border-style:  solid;
+    border-width: 2px;
+    margin-top: 5px;
+    justify-content: space-around;
+    align-items: center;
+}
+ .section1 
+{
+    display: inline-flex;
+    width: 270px;
+    height: 40px;
+    margin: 10px;
+}
+.section1:hover{
+    background-color: yellow;
+}
+.section1:focus{
+    background-color: red;
+}
+.section2
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+ .section2_1
+{
+    width: 270px;
+    height: 40px;
+    margin-bottom: 5px;
+    /* 텍스트 가로 중앙 정렬 */
+    text-align: center;
+    /* 텍스트 세로 중앙 정렬 */
+    line-height: 40px; 
+}
+.section2_2
+ {
+    width: 270px;
+    height: 120px;
+}
+.section3 
+{
+    display: inline-flex;
+    width: 270px;
+    height: 120px;
+    margin: 10px;
+}
+.section4 
+{
+    display: inline-flex;
+    width: 270px;
+    height: 120px;
+    margin: 10px;
+}
+.footer{
+    flex: 0.5;
+    overflow: auto ;
+    border-style: solid;
+    border-color: black;
+    margin-top: 5px;
+}
+.greens{
+    background-color: green;
+}
+.blueviolets{
+    background-color: blueviolet;
+}
+.grays{
+    background-color: dimgrey;
+}
+.tomatos{
+    background-color: tomato;
+}
+.yellows{
+    background-color: yellow;
+}
+.cover{
+    display: inline-block;
+    padding: .2em .30em;
+    color: #999;
+    font-size: inherit;
+    line-height: normal;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+}
+.modal{
+    background-color:rgba(0,0,0,0.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    opacity: 0;
+    transition: all .4s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal:target{
+    opacity: 1;
+    pointer-events: auto;
+    backdrop-filter: blur(2px);
+}
+
+
+.window{
+    background-color: white;
+    flex-basis: 400px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.window-header{
+    background-color: #ddd;
+}
+
+.window-contents{
+    flex-grow: 1;
+    height: 300px;
+}
+.window-contents-button{
+    line-height: 370px;
+    vertical-align: bottom;
+    text-align: right;
+    margin-right: 10px;
+}
+.button{
+    padding: .2em .30em;
+    color:white;
+    /* 부모요소의 속성값 상속 */
+    font-size: inherit; 
+    background-color: dodgerblue;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+}
+
+.button.line{
+    background-color: transparent;
+    color: dodgerblue;
+}
+.button + .button{
+    margin-left: 10px;
+}
+a {
+    /* a태그 밑줄 숨김 */
+    text-decoration: none;
+}
+
+h3{
+    margin: 0;
+}
+.filebox label{
+    display: inline-block;
+    padding: .2em .30em;
+    color: #999;
+    font-size: inherit;
+    line-height: normal;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+}
+.filebox input[type="file"]{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+.columnAlign{
+    text-align: right;
+    vertical-align: bottom;
+    line-height: 200px;
+    margin-right: 5px;
+}
+.columnAlign_header{
+    text-align: right;
+    vertical-align: bottom;
+    line-height: 80px;
+    margin-right: 5px;
+}
+.A_disabled{
+    pointer-events: none;
+}
