@@ -21,16 +21,13 @@ class Admin extends Component {
 
         let files = event.target.files;
         let sidoCode = event.target.name;
-
-        console.log(files);
-        console.log(sidoCode);
         
         this.setState({ filename: files[0].name, filenameId: index, sidoCode: sidoCode });
         
         let data = {
             filename: files[0].name,
             filenameId: index,
-            sidoCode: sidoCode
+            sidoCode:sidoCode
         }
         console.log('ff',data)
         addItems(data);
@@ -47,8 +44,7 @@ class Admin extends Component {
 
     render() {
         const {items} = this.props;
-        //localStorage.setItem('items',JSON.stringify(items));
-        console.log(items);
+        localStorage.setItem('items',JSON.stringify(items));
         return (
             <div className="frame1">
 
@@ -64,20 +60,22 @@ class Admin extends Component {
                                     <h2>{item.sido}</h2>
                                 </div>
                                 {
-                                    item.titles.map((title, titleIndex) => (
-                                        <div className="content" key={`title-${index}-${title.key}`}>
+                                    item.title.map((items, index) => (
+                                        <div className="content" key={items.key}>
                                             <div className="contentLeft">
-                                                <h3>{title.name}</h3>
+                                                <h3>{items.name}</h3>
                                             </div>
-                                                    <div className="contentMiddle">
-                                                        <h3>{title.fileName}</h3>
-                                                    </div> 
+                                            {(this.state.filenameId === items.key && this.state.sidoCode === items.code) ? //시도를 추가하는 부분
+                                                <div className="contentMiddle">
+                                                    <h3>{this.state.filename}</h3>
+                                                </div> : null
+                                            }
                                             <div className="contentRight" >
-                                                <label htmlFor={title.key}>
-                                                    등록<input type="file" id={title.key} name={title.code} onChange={this.fileUpload(title.key)} />
+                                                <label htmlFor={items.key}>
+                                                    등록<input type="file" id={items.key} name={items.code} onChange={this.fileUpload(items.key)} />
                                                 </label>
                                                 <label htmlFor="ex_file_delete">삭제</label>
-                                                {/* <input key={title.key} type="button" id="ex_file_delete" onClick={this.fileDelete(title.key)} /> */}
+                                                {/* <input key={items.key} type="button" id="ex_file_delete" onClick={this.fileDelete(items.key)} /> */}
                                             </div>
                                         </div>
                                     ))
