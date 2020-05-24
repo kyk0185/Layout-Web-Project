@@ -8,6 +8,7 @@ export const data = [
             {
                 key:1,
                 name:'제목1',
+                fileName: '카카오톡 설치파일.exe'
             },
             {
                 key:2,
